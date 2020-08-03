@@ -45,7 +45,7 @@ A browser or mobile client makes a request to the authentication server containi
 
 ## Applications ##
 
-To access Aspose REST APIs, you need to [create an application]({{< ref "merger/getting-started/create-new-app-and-get-app-key-and-sid.md" >}})). To register new applications, login into the [Dashboard Developer](https://dashboard.groupdocs.cloud/#/) site using your Aspose Account, and go to the [My Apps](https://dashboard.groupdocs.cloud/#/apps) view. Once you create a new application, we will issue a **client_id** (App SID) and **client_secret** (App Key) that you can use to authenticate your REST API calls using the JWT authentication.
+To access Aspose REST APIs, you need to [create an application]({{< ref "editor/getting-started/create-new-app-and-get-app-key-and-sid.md" >}})). To register new applications, login into the [Dashboard Developer](https://dashboard.groupdocs.cloud/#/) site using your Aspose Account, and go to the [My Apps](https://dashboard.groupdocs.cloud/#/apps) view. Once you create a new application, we will issue a **client_id** (App SID) and **client_secret** (App Key) that you can use to authenticate your REST API calls using the JWT authentication.
 
 ## Get Access Token ##
 
@@ -106,7 +106,7 @@ Now that you have the Bearer Token (access_token) generated using the applicatio
  Request
 
 ```html 
-curl -X GET "https://api.groupdocs.cloud/v2.0/merger/info?FilePath#words/four-pages.docx"
+curl -X GET "https://api.groupdocs.cloud/v2.0/editor/info?FilePath#words/four-pages.docx"
 -H "accept: application/json" 
 -H "authorization: Bearer [Access Token]"
 
