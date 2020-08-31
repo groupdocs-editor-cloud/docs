@@ -8,54 +8,33 @@ description: ""
 keywords: ""
 ---
 
+## Introduction ##
 
-
-
-
-
-# Introduction #
-
-This REST API allows getting list of all [file formats supported ]({{< ref "editor/getting-started/supported-document-formats.md" >}})by GroupDocs.Editor Cloud product. 
+This REST API allows getting list of all [file formats supported ]({{< ref "editor/getting-started/supported-document-formats.md" >}})by GroupDocs.Editor Cloud product.
 
 ## Resources ##
 
 The following GroupDocs.Editor Cloud REST API resource has been used in the [get supported file types](https://apireference.groupdocs.cloud/editor/#/Info/GetSupportedFileFormats) example.
-|---|---
 
-
-
-
-
-
-
- 
-
-|
-|---
-
-
-
-
+```html
 HTTP POST ~~/formats
+```
 
-
-
-## cURL Example ##
+### cURL Example ###
 
 The following example demonstrates how to get supported file types.
 
+Request
 
- Request
-
-```html 
+```html
 * First get JSON Web Token
 * Please get your App Key and App SID from https://dashboard.groupdocs.cloud/#/apps. Kindly place App Key in "client_secret" and App SID in "client_id" argument.
 curl -v "https://api.groupdocs.cloud/connect/token" \
 -X POST \
--d "grant_type#client_credentials&client_id#xxxx&client_secret#xxxx" \
+-d "grant_type=client_credentials&client_id=xxxx&client_secret=xxxx" \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -H "Accept: application/json"
-  
+
 * cURL example to get document information
 curl -v "https://api.groupdocs.cloud/v1.0/editor/formats" \
 -X GET \
@@ -63,15 +42,13 @@ curl -v "https://api.groupdocs.cloud/v1.0/editor/formats" \
 -H "Accept: application/json" \
 -H "Authorization: Bearer <jwt token>"
 
+```
 
- ```
+Response
 
-
- Response
-
-```html 
+```html
 {
-  "formats": [    
+  "formats": [
     {
       "extension": ".doc",
       "fileFormat": "Microsoft Word Document"
@@ -92,12 +69,9 @@ curl -v "https://api.groupdocs.cloud/v1.0/editor/formats" \
   ]
 }
 
+```
 
- ```
-
-
-
-[Swagger UI](https://apireference.groupdocs.cloud/editor/#/Info/GetSupportedFileFormats) lets you call this REST API directly from the browser.  
+[Swagger UI](https://apireference.groupdocs.cloud/editor/#/Info/GetSupportedFileFormats) lets you call this REST API directly from the browser.
 
 ## SDKs ##
 
@@ -105,75 +79,26 @@ Using an SDK (API client) is the quickest way for a developer to speed up the de
 
 ### Get Supported File Types Examples ###
 
-
- C#
-
-
-
+C#
 
 {{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Get_Document_File_Types.cs >}}
 
-
-
-
-
- Java
-
-
-
+Java
 
 {{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Get_Document_File_Types.java >}}
 
-
-
-
-
- PHP
-
-
-
+PHP
 
 {{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Get_Document_File_Types.php >}}
 
-
-
-
-
- Ruby
-
-
-
+Ruby
 
 {{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Get_Document_File_Types.rb >}}
 
-
-
-
-
- Node.js
-
-
-
+Node
 
 {{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Get_Document_File_Types.js >}}
 
-
-
-
-
- Python
-
-
-
+Python
 
 {{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Get_Document_File_Types.py >}}
-
-
-
-
-
-
-
-
-
-
