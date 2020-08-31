@@ -17,14 +17,14 @@ This REST API allows getting list of all [file formats supported ]({{< ref "ed
 The following GroupDocs.Editor Cloud REST API resource has been used in the [get supported file types](https://apireference.groupdocs.cloud/editor/#/Info/GetSupportedFileFormats) example.
 
 ```html
-HTTP POST ~~/formats
+HTTP POST ~/formats
 ```
 
 ### cURL Example ###
 
 The following example demonstrates how to get supported file types.
 
-Request
+{{< tabs tabTotal="2" tabID="1" tabName1="Request" tabName2="Response" >}} {{< tab tabNum="1" >}}
 
 ```html
 * First get JSON Web Token
@@ -44,7 +44,7 @@ curl -v "https://api.groupdocs.cloud/v1.0/editor/formats" \
 
 ```
 
-Response
+{{< /tab >}} {{< tab tabNum="2" >}}
 
 ```html
 {
@@ -71,6 +71,8 @@ Response
 
 ```
 
+{{< /tab >}} {{< /tabs >}}
+
 [Swagger UI](https://apireference.groupdocs.cloud/editor/#/Info/GetSupportedFileFormats) lets you call this REST API directly from the browser.
 
 ## SDKs ##
@@ -79,26 +81,28 @@ Using an SDK (API client) is the quickest way for a developer to speed up the de
 
 ### Get Supported File Types Examples ###
 
-C#
+{{< tabs tabTotal="6" tabID="10" tabName1="C#" tabName2="Java" tabName3="PHP" tabName4="Node.js" tabName5="Python" tabName6="Ruby" >}} {{< tab tabNum="1" >}}
 
 {{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Get_Document_File_Types.cs >}}
 
-Java
+{{< /tab >}} {{< tab tabNum="2" >}}
 
 {{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Get_Document_File_Types.java >}}
 
-PHP
+{{< /tab >}} {{< tab tabNum="3" >}}
 
 {{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Get_Document_File_Types.php >}}
 
-Ruby
+{{< /tab >}} {{< tab tabNum="6" >}}
 
 {{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Get_Document_File_Types.rb >}}
 
-Node
+{{< /tab >}} {{< tab tabNum="4" >}}
 
 {{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Get_Document_File_Types.js >}}
 
-Python
+{{< /tab >}} {{< tab tabNum="5" >}}
 
 {{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Get_Document_File_Types.py >}}
+
+{{< /tab >}} {{< /tabs >}}

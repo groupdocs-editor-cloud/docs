@@ -32,11 +32,15 @@ The GitHub repository for [GroupDocs.Editor Cloud](https://github.com/groupdocs-
 
 For complete examples and data files, please go to [https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-dotnet-samples](https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-dotnet-samples)
 
-```charp
-string MyAppKey = ""; // Get AppKey and AppSID from [https://dashboard.groupdocs.cloud](https://dashboard.groupdocs.cloud/)
-string MyAppSid = ""; // Get AppKey and AppSID from [https://dashboard.groupdocs.cloud](https://dashboard.groupdocs.cloud/)
+{{< tabs tabTotal="1" tabID="10" tabName1="C#" >}} {{< tab tabNum="1" >}}
+
+```csharp
+string MyAppKey = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+string MyAppSid = ""; // Get AppKey and AppSID from ttps://dashboard.groupdocs.cloud
 var configuration = new Configuration(MyAppSid, MyAppKey);
 var apiInstance = new InfoApi(configuration);
 var response = apiInstance.GetSupportedFileFormats();
 
 ```
+
+{{< /tab >}} {{< /tabs >}}

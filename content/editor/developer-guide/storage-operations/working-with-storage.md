@@ -24,14 +24,14 @@ This API intended for checking the existence of cloud storage with a given name 
 
 ### cURL Example ###
 
-Request
+{{< tabs tabTotal="2" tabID="1" tabName1="Request" tabName2="Response" >}} {{< tab tabNum="1" >}}
 
 ```html
 curl -X GET "https://api.groupdocs.cloud/v1.0/editor/storage/MyStorage/exist" -H  "accept: application/json" -H  "authorization: Bearer  [Access Token]"
 
 ```
 
-Response
+{{< /tab >}} {{< tab tabNum="2" >}}
 
 ```html
 {
@@ -39,35 +39,39 @@ Response
 }
 ```
 
+{{< /tab >}} {{< /tabs >}}
+
 ## SDKs ##
 
 Our API is completely independent of your operating system, database system or development language. You can use any language and platform that supports HTTP to interact with our API. However, manually writing client code can be difficult, error-prone and time-consuming. Therefore, we have provided and support API [SDKs](https://github.com/groupdocs-editor-cloud) in many development languages in order to make it easier to integrate with us. If you use [SDK](https://github.com/groupdocs-editor-cloud), it hides the [Storage existence](https://apireference.groupdocs.cloud/editor/#/Storage/StorageExists) calls and lets you use GroupDocs Cloud features in a native way for your preferred language.
 
 ### SDK Examples ###
 
-C#
+{{< tabs tabTotal="6" tabID="10" tabName1="C#" tabName2="Java" tabName3="PHP" tabName4="Node.js" tabName5="Python" tabName6="Ruby" >}} {{< tab tabNum="1" >}}
 
 {{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Storage_Exist.cs >}}
 
-Java
+{{< /tab >}} {{< tab tabNum="2" >}}
 
 {{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Storage_Exist.java >}}
 
-PHP
+{{< /tab >}} {{< tab tabNum="3" >}}
 
 {{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Storage_Exist.php >}}
 
-Ruby
+{{< /tab >}} {{< tab tabNum="6" >}}
 
 {{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Working_With_Spreadsheets.rb >}}
 
-Node
+{{< /tab >}} {{< tab tabNum="4" >}}
 
 {{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Storage_Exist.js >}}
 
-Python
+{{< /tab >}} {{< tab tabNum="5" >}}
 
 {{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Storage_Exist.py >}}
+
+{{< /tab >}} {{< /tabs >}}
 
 ## Storage object existence API ##
 
@@ -87,13 +91,13 @@ This API intended for checking the existence of a file or folder in [GroupDocs C
 
 ### cURL Example ###
 
-Request
+{{< tabs tabTotal="2" tabID="2" tabName1="Request" tabName2="Response" >}} {{< tab tabNum="1" >}}
 
 ```html
 curl -X GET "https://api.groupdocs.cloud/v1.0/editor/storage/exist/editordocs?storageName=MyStorage" -H  "accept: application/json" -H  "authorization: Bearer [Access Token]"
 ```
 
-Response
+{{< /tab >}} {{< tab tabNum="2" >}}
 
 ```html
 {
@@ -102,35 +106,39 @@ Response
 }
 ```
 
+{{< /tab >}} {{< /tabs >}}
+
 ## SDKs ##
 
 Our API is completely independent of your operating system, database system or development language. You can use any language and platform that supports HTTP to interact with our API. However, manually writing client code can be difficult, error-prone and time-consuming. Therefore, we have provided and support API [SDKs](https://github.com/groupdocs-editor-cloud) in many development languages in order to make it easier to integrate with us. If you use [SDK](https://github.com/groupdocs-editor-cloud), it hides the [Storage Object existence](https://apireference.groupdocs.cloud/editor/#/Storage/ObjectExists) calls and lets you use GroupDocs Cloud features in a native way for your preferred language.
 
 ### SDK Examples ###
 
-C#
+{{< tabs tabTotal="6" tabID="11" tabName1="C#" tabName2="Java" tabName3="PHP" tabName4="Node.js" tabName5="Python" tabName6="Ruby" >}} {{< tab tabNum="1" >}}
 
 {{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Object_Exists.cs >}}
 
-Java
+{{< /tab >}} {{< tab tabNum="2" >}}
 
 {{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Object_Exists.java >}}
 
-PHP
+{{< /tab >}} {{< tab tabNum="3" >}}
 
 {{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Object_Exists.php >}}
 
-Ruby
+{{< /tab >}} {{< tab tabNum="6" >}}
 
 {{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Object_Exists.rb >}}
 
-Node
+{{< /tab >}} {{< tab tabNum="4" >}}
 
 {{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Object_Exists.js >}}
 
-Python
+{{< /tab >}} {{< tab tabNum="5" >}}
 
 {{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Object_Exists.py >}}
+
+{{< /tab >}} {{< /tabs >}}
 
 ## Storage Space Usage API ##
 
@@ -148,13 +156,13 @@ This API intended for getting total and used space of the [GroupDocs Cloud Stora
 
 ### cURL Example ###
 
-Request
+{{< tabs tabTotal="2" tabID="3" tabName1="Request" tabName2="Response" >}} {{< tab tabNum="1" >}}
 
 ```html
 curl -X GET "https://api.groupdocs.cloud/v1.0/editor/storage/disc?storageName=MyStorage" -H  "accept: application/json" -H  "authorization: Bearer [Access Token]"
 ```
 
-Response
+{{< /tab >}} {{< tab tabNum="2" >}}
 
 ```html
 {
@@ -163,35 +171,39 @@ Response
 }
 ```
 
+{{< /tab >}} {{< /tabs >}}
+
 ## SDKs ##
 
 Our API is completely independent of your operating system, database system or development language. You can use any language and platform that supports HTTP to interact with our API. However, manually writing client code can be difficult, error-prone and time-consuming. Therefore, we have provided and support API [SDKs](https://github.com/groupdocs-editor-cloud) in many development languages in order to make it easier to integrate with us. If you use [SDK](https://github.com/groupdocs-editor-cloud), it hides the [storage space usage API](https://apireference.groupdocs.cloud/editor/#/Storage/GetDiscUsage) calls and lets you use GroupDocs Cloud features in a native way for your preferred language.
 
 ### SDK Examples ###
 
-C#
+{{< tabs tabTotal="6" tabID="12" tabName1="C#" tabName2="Java" tabName3="PHP" tabName4="Node.js" tabName5="Python" tabName6="Ruby" >}} {{< tab tabNum="1" >}}
 
 {{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Get_Disc_Usage.cs >}}
 
-Java
+{{< /tab >}} {{< tab tabNum="2" >}}
 
 {{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Get_Disc_Usage.java >}}
 
-PHP
+{{< /tab >}} {{< tab tabNum="3" >}}
 
 {{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Get_Disc_Usage.php >}}
 
-Ruby
+{{< /tab >}} {{< tab tabNum="6" >}}
 
 {{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Get_Disc_Usage.rb >}}
 
-Node
+{{< /tab >}} {{< tab tabNum="4" >}}
 
 {{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Get_Disc_Usage.js >}}
 
-Python
+{{< /tab >}} {{< tab tabNum="5" >}}
 
 {{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Get_Disc_Usage.py >}}
+
+{{< /tab >}} {{< /tabs >}}
 
 ## Storage File Versions API ##
 
@@ -210,13 +222,13 @@ This API intended for getting the list of file versions, stored in the [GroupDoc
 
 ### cURL Example ###
 
-Request
+{{< tabs tabTotal="2" tabID="4" tabName1="Request" tabName2="Response" >}} {{< tab tabNum="1" >}}
 
 ```html
 curl -X GET "https://api.groupdocs.cloud/v1.0/editor/storage/version/one-page.docx?storageName=MyStorage" -H  "accept: application/json" -H  "authorization: Bearer [Access Token]"
 ```
 
-Response
+{{< /tab >}} {{< tab tabNum="2" >}}
 
 ```html
 {
@@ -234,32 +246,36 @@ Response
 }
 ```
 
+{{< /tab >}} {{< /tabs >}}
+
 ## SDKs ##
 
 Our API is completely independent of your operating system, database system or development language. You can use any language and platform that supports HTTP to interact with our API. However, manually writing client code can be difficult, error-prone and time-consuming. Therefore, we have provided and support API [SDKs](https://github.com/groupdocs-editor-cloud) in many development languages in order to make it easier to integrate with us. If you use [SDK](https://github.com/groupdocs-editor-cloud), it hides the [Storage File Versions API](https://apireference.groupdocs.cloud/editor/#/Storage/GetFileVersions) calls and lets you use GroupDocs Cloud features in a native way for your preferred language.
 
 ### SDK Examples ###
 
-C#
+{{< tabs tabTotal="6" tabID="13" tabName1="C#" tabName2="Java" tabName3="PHP" tabName4="Node.js" tabName5="Python" tabName6="Ruby" >}} {{< tab tabNum="1" >}}
 
 {{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Get_File_Versions.cs >}}
 
-Java
+{{< /tab >}} {{< tab tabNum="2" >}}
 
 {{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Get_File_Versions.java >}}
 
-PHP
+{{< /tab >}} {{< tab tabNum="3" >}}
 
 {{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Get_File_Versions.php >}}
 
-Ruby
+{{< /tab >}} {{< tab tabNum="6" >}}
 
 {{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Get_File_Versions.rb >}}
 
-Node
+{{< /tab >}} {{< tab tabNum="4" >}}
 
 {{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Get_File_Versions.js >}}
 
-Python
+{{< /tab >}} {{< tab tabNum="5" >}}
 
 {{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Get_File_Versions.py >}}
+
+{{< /tab >}} {{< /tabs >}}
