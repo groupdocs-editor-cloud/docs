@@ -48,7 +48,7 @@ This may be quite useful for other manipulations.
 
 ## Security and Authentication ##
 
-The GroupDocs.Editor Cloud API is secured and requires authentication. Two keys AppSID and AppKey are required for Authentication which can be created at the [Dashboard](http://dashboard.groupdocs.cloud/). Check [Authenticating API Requests]({{< ref "total/getting-started/overview-rest-api/authenticating-api-requests.md" >}})) article for complete example.
+The GroupDocs.Editor Cloud API is secured and requires authentication. One set of keys Client Id and Client Secret are required for Authentication which can be created at the [Dashboard](http://dashboard.groupdocs.cloud/). Check [Authenticating API Requests]({{< ref "total/getting-started/overview-rest-api/authenticating-api-requests.md" >}}) article for a complete example.
 
 ## SDKs ##
 
