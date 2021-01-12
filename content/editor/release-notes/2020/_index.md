@@ -1,9 +1,9 @@
 ---
-id: "2019"
-url: "editor/2019"
-title: "Release Notes - 2019"
+id: "2020"
+url: "editor/2020"
+title: "Release Notes - 2020"
 productName: "GroupDocs.Editor Cloud"
-weight: 2
+weight: 1
 description: ""
 keywords: ""
 ---

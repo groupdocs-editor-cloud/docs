@@ -25,7 +25,7 @@ Here is the list of properties that can be obtained for a document:
 HTTP POST ~/info
 ```
 
-[Swagger UI](https://apireference.groupdocs.cloud/editor/#/Info/GetInfo) lets you call this REST API directly from the browser. 
+[Swagger UI](https://apireference.groupdocs.cloud/editor/#/Info/GetInfo) lets you call this REST API directly from the browser.
 
 ### cURL Example ###
 
