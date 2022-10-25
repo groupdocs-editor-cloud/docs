@@ -66,7 +66,7 @@ Complete source code of GroupDocs.Editor Cloud SDK for PHP is freely available o
 
 You can directly include the source code of GroupDocs.Editor Cloud SDK for Java in your own project, the source code is available from [here](https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-java).
 
-Alternatively, you can use **[Maven](https://repository.groupdocs.cloud/webapp/#/artifacts/browse/tree/General/repo/com/groupdocs/groupdocs-editor-cloud)** to include in your Java project. Below are the steps for Maven.
+Alternatively, you can use **[Maven](https://releases.groupdocs.cloud/java/repo/com/groupdocs/groupdocs-editor-cloud/)** to include in your Java project. Below are the steps for Maven.
 
 ##### GroupDocs Maven Repository #####
 
@@ -74,7 +74,7 @@ Alternatively, you can use **[Maven](https://repository.groupdocs.cloud/webapp/#
 <repository>
     <id>groupdocs-artifact-repository</id>
     <name>GroupDocs Artifact Repository</name>
-    <url>http://repository.groupdocs.cloud/repo</url>
+    <url>https://releases.groupdocs.cloud/java/repo/</url>
 </repository>
 ```
 
