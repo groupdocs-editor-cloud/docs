@@ -3,7 +3,7 @@ id: "groupdocs-editor-cloud-22-5-release-notes"
 url: "editor/groupdocs-editor-cloud-22-5-release-notes"
 title: "GroupDocs.Editor Cloud 22.5 Release Notes"
 productName: "GroupDocs.Editor Cloud"
-weight: 1
+weight: 2
 description: ""
 keywords: ""
 ---
