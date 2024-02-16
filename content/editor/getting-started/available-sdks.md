@@ -6,21 +6,22 @@ productName: "GroupDocs.Editor Cloud"
 weight: 3
 description: ""
 keywords: ""
+toc: True
 ---
 
 GroupDocs.Editor Cloud is a modern REST-oriented API, that allows easy integration into existing systems.
 
-## Why use an SDK? ##
+## Why use an SDK?
 
 Using an SDK (API client) is the quickest way for a developer to speed up the development. An SDK takes care of a lot of low-level details of making requests and handling responses and lets you focus on writing code specific to your particular project.
 
-## SDK benefits ##
+## SDK benefits
 
 Our supported SDKs are 100% tested and out of the box running. These SDKs are open source and have the MIT license. You can use them and even customize them for absolutely free of charge.
 
-## Supported SDKs ##
+## Supported SDKs
 
-## .NET ##
+### .NET
 
 **GroupDocs.Editor Cloud SDK for .NET** allows you to incorporate GroupDocs.Editor Cloud services in your .NET applications quickly and easily.
 
@@ -38,7 +39,7 @@ Complete source code of GroupDocs.Editor Cloud SDK for .Net is freely available 
 
 {{< alert style="info" >}}Please see the GroupDocs.Viewer Cloud SDK for .NET [Examples here](https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-dotnet-samples/tree/master/Examples).{{< /alert >}}
 
-## PHP ##
+### PHP
 
 **GroupDocs.Editor Cloud SDK for PHP** allows you to incorporate GroupDocs.Editor Cloud services in your PHP applications quickly and easily.
 
@@ -60,7 +61,7 @@ Complete source code of GroupDocs.Editor Cloud SDK for PHP is freely available o
 
 {{< alert style="info" >}}Please see the GroupDocs.Editor Cloud SDK for PHP [Examples here](https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-php/tree/master/tests/GroupDocs/Editor/ApiTests).{{< /alert >}}
 
-## Java ##
+### Java
 
 **GroupDocs.Editor Cloud SDK for Java** allows you to incorporate GroupDocs.Editor Cloud services in your Java applications quickly and easily.
 
@@ -68,9 +69,9 @@ You can directly include the source code of GroupDocs.Editor Cloud SDK for Java 
 
 Alternatively, you can use **[Maven](https://releases.groupdocs.cloud/java/repo/com/groupdocs/groupdocs-editor-cloud/)** to include in your Java project. Below are the steps for Maven.
 
-##### GroupDocs Maven Repository #####
+#### GroupDocs Maven Repository
 
-```html
+```xml
 <repository>
     <id>groupdocs-artifact-repository</id>
     <name>GroupDocs Artifact Repository</name>
@@ -78,9 +79,9 @@ Alternatively, you can use **[Maven](https://releases.groupdocs.cloud/java/repo/
 </repository>
 ```
 
-##### Maven Dependency #####
+#### Maven Dependency
 
-```html
+```xml
 <dependency>
     <groupId>com.groupdocs</groupId>
     <artifactId>groupdocs-editor-cloud</artifactId>
@@ -89,25 +90,25 @@ Alternatively, you can use **[Maven](https://releases.groupdocs.cloud/java/repo/
 </dependency>
 ```
 
-##### Get Sources and Javadocs #####
+#### Get Sources and Javadocs
 
-##### Maven #####
+#### Maven
 
 ```html
 mvn dependency:sources
 mvn dependency:resolve -Dclassifier#javadoc
 ```
 
-##### Eclipse IDE #####
+#### Eclipse IDE
 
 ```html
 mvn eclipse:eclipse -DdownloadSources#true
 mvn eclipse:eclipse -DdownloadSources#true -DdownloadJavadocs#false
 ```
 
-##### pom.xml #####
+#### pom.xml
 
-```html
+```xml
 <build>
     <plugins>
         <plugin>
@@ -122,7 +123,7 @@ mvn eclipse:eclipse -DdownloadSources#true -DdownloadJavadocs#false
 </build>
 ```
 
-##### Direct Download #####
+#### Direct Download
 
 {{< alert style="info" >}}
 Complete source code of GroupDocs.Editor Cloud SDK for Java is freely available on the [GitHub](https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-java).
@@ -130,7 +131,7 @@ Complete source code of GroupDocs.Editor Cloud SDK for Java is freely available 
 
 {{< alert style="info" >}}Please see the GroupDocs.EditorCloud SDK for Java [Examples here](https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-java/tree/master/src/test/java/com/groupdocs/cloud/editor/api).{{< /alert >}}
 
-## Ruby ##
+### Ruby
 
 **GroupDocs.Editor Cloud SDK for Ruby** allows you to incorporate GroupDocs.Editor Cloud services in your Ruby applications quickly and easily.
 It is available on **[RubyGem distribution](https://rubygems.org/gems/groupdocs_editor_cloud)** package. Run the following command::
@@ -145,7 +146,7 @@ Complete source code of GroupDocs.Editor Cloud SDK for Ruby is freely available 
 
 {{< alert style="info" >}}Please see the GroupDocs.Editor Cloud SDK for Ruby [Examples here](https://github.com/groupdocs-editor-cloud/groupdocs-Editor-cloud-ruby/tree/master/test/api).{{< /alert >}}
 
-## Node.js ##
+### Node.js
 
 **GroupDocs.Editor Cloud SDK for Node.js** allows you to incorporate GroupDocs.Editor Cloud services in your Node.js applications quickly and easily. It is available on **[npmjs.com](https://www.npmjs.com/package/groupdocs-editor-cloud)** package. Run the following command:
 
@@ -159,7 +160,7 @@ Complete source code of GroupDocs.Editor Cloud SDK for Node.js is freely availab
 
 {{< alert style="info" >}}Please see the GroupDocs.Editor Cloud SDK for Node.js [Examples here](https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-node-samples/tree/master/Examples).{{< /alert >}}
 
-## Python ##
+### Python
 
 **GroupDocs.Editor Cloud SDK for Python** allows you to incorporate GroupDocs.Editor Cloud services in your Python applications quickly and easily.
 

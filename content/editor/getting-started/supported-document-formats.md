@@ -6,11 +6,12 @@ productName: "GroupDocs.Editor Cloud"
 weight: 4
 description: ""
 keywords: ""
+toc: True
 ---
 
 The following table indicates the file formats that GroupDocs.Editor Cloud can edit.
 
-## WordProcessing family formats ##
+## WordProcessing family formats
 
 |Format|Description|Edit|Auto Detection
 |---|---|---|---
@@ -26,7 +27,7 @@ The following table indicates the file formats that GroupDocs.Editor Cloud can 
 |[RTF](https://wiki.fileformat.com/specification/word-processing/rtf/)|Rich Text Format|![(tick)](editor/images/check.png)|![(tick)](editor/images/check.png)
 |WordML|Microsoft Office Word 2003 XML Format — WordProcessingML or WordML|![(tick)](editor/images/check.png)|![(tick)](editor/images/check.png)
 
-## Spreadsheet family formats ##
+## Spreadsheet family formats
 
 |Format|Description|Edit|Auto Detection
 |---|---|---|---
@@ -47,7 +48,7 @@ The following table indicates the file formats that GroupDocs.Editor Cloud can 
 |[CSV](https://wiki.fileformat.com/specification/spreadsheet/csv/)|Comma Separated Values document|![(tick)](editor/images/check.png)|
 |[TSV](https://wiki.fileformat.com/specification/spreadsheet/tsv/)|Tab Separated Values document|![(tick)](editor/images/check.png)|
 
-## Presentation family formats ##
+## Presentation family formats
 
 |Format|Description|Edit|Auto Detection
 |---|---|---|---
@@ -64,7 +65,7 @@ The following table indicates the file formats that GroupDocs.Editor Cloud can 
 |[ODP](https://wiki.fileformat.com/presentation/odp/)|OpenDocument Presentation|![(tick)](editor/images/check.png)|![(tick)](editor/images/check.png)
 |[OTP](https://wiki.fileformat.com/presentation/otp/)|OpenDocument Presentation template|![(tick)](editor/images/check.png)|![(tick)](editor/images/check.png)
 
-## Other formats ##
+## Other formats
 
 |Format|Description|Edit|Auto Detection
 |---|---|---|---
