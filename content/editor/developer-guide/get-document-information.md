@@ -71,26 +71,123 @@ Using an SDK (API client) is the quickest way for a developer to speed up the de
 
 {{< tabs "example2">}} {{< tab "C#" >}}
 
-{{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Get_Document_Information.cs >}}
+```csharp
+// For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-dotnet-samples
+string MyAppKey = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+string MyAppSid = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+var configuration = new Configuration(MyAppSid, MyAppKey);
+  
+var apiInstance = new InfoApi(configuration);
+var fileInfo = new FileInfo
+{
+    FilePath = "wordprocessing/four-pages.docx",
+    Password = "password",
+    StorageName = Common.MyStorage
+};
+  
+var request = new GetInfoRequest(fileInfo);
+var response = apiInstance.GetInfo(request);
+```
 
 {{< /tab >}} {{< tab "Java" >}}
 
-{{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Get_Document_Information.java >}}
+```java
+// For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-java-samples
+String MyAppKey = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+String MyAppSid = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+Configuration configuration = new Configuration(MyAppSid, MyAppKey);
+  
+InfoApi apiInstance = new InfoApi(configuration);
+ 
+FileInfo fileInfo = new FileInfo();         
+fileInfo.setFilePath("WordProcessing/password-protected.docx");
+fileInfo.setPassword("password");
+ 
+GetInfoRequest request = new GetInfoRequest(fileInfo);
+InfoResult response = apiInstance.getInfo(request);
+```
 
 {{< /tab >}} {{< tab "PHP" >}}
 
-{{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Get_Document_Information.php >}}
+```php
+// For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-php-samples
+use GroupDocs\Editor\Model;
+use GroupDocs\Editor\Model\Requests;
+ 
+ 
+$AppSid = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+$AppKey = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+$configuration = new GroupDocs\Editor\Configuration();
+$configuration->setAppSid($AppSid);
+$configuration->setAppKey($AppKey);
+ 
+$infoApi = new GroupDocs\Editor\InfoApi($configuration);
+ 
+$fileInfo = new Model\FileInfo();
+$fileInfo->setFilePath("WordProcessing/password-protected.docx");
+$fileInfo->setPassword("password");
+ 
+ 
+$response = $infoApi->getInfo(new Requests\getInfoRequest($fileInfo));
+```
 
 {{< /tab >}} {{< tab "Ruby" >}}
 
-{{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Get_Document_Information.rb >}}
+```ruby
+# For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-ruby-samples
+require 'groupdocs_editor_cloud'
+ 
+$app_sid = "XXXX-XXXX-XXXX-XXXX" # Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+$app_key = "XXXXXXXXXXXXXXXX" # Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+infoApi = GroupDocsEditorCloud::InfoApi.from_keys($app_sid, $app_key)
+ 
+fileInfo = GroupDocsEditorCloud::FileInfo.new
+fileInfo.file_path = 'WordProcessing/password-protected.docx'
+fileInfo.password = 'password'
+request = GroupDocsEditorCloud::GetInfoRequest.new(fileInfo)
+response = infoApi.get_info(request)
+puts("Pages count = " + response.page_count.to_s)
+```
 
 {{< /tab >}} {{< tab "Node.js" >}}
 
-{{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Get_Document_Information.js >}}
+```js
+// For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-node-samples
+global.editor_cloud = require("groupdocs-editor-cloud");
+ 
+global.appSid = "XXXX-XXXX-XXXX-XXXX"; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+global.appKey = "XXXXXXXXXXXXXXXX"; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+global.infoApi = editor_cloud.InfoApi.fromKeys(appSid, appKey);
+ 
+let fileInfo = new editor_cloud.FileInfo();
+fileInfo.filePath = "WordProcessing/password-protected.docx";
+fileInfo.password = "password";
+ 
+let request = new editor_cloud.GetInfoRequest(fileInfo);
+let response = await infoApi.getInfo(request);
+ 
+console.log("GetDocumentInfo: Page Count = " + response.pageCount);
+```
 
 {{< /tab >}} {{< tab "Python" >}}
 
-{{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Get_Document_Information.py >}}
+```python
+# For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-python-samples
+import groupdocs_editor_cloud
+ 
+app_sid = "XXXX-XXXX-XXXX-XXXX" # Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+app_key = "XXXXXXXXXXXXXXXX" # Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+infoApi = groupdocs_editor_cloud.InfoApi.from_keys(app_sid, app_key)
+ 
+fileInfo = groupdocs_editor_cloud.FileInfo("WordProcessing/password-protected.docx", None, None, "password")
+result = infoApi.get_info(groupdocs_editor_cloud.GetInfoRequest(fileInfo))        
+print("Page count = " + str(result.page_count))
+```
 
 {{< /tab >}} {{< /tabs >}}

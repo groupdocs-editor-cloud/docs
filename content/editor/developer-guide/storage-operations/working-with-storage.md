@@ -48,27 +48,186 @@ Our API is completely independent of your operating system, database system or d
 
 {{< tabs "example2">}} {{< tab "C#" >}}
 
-{{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Storage_Exist.cs >}}
+```csharp
+using System;
+using GroupDocs.Editor.Cloud.Sdk.Api;
+using GroupDocs.Editor.Cloud.Sdk.Client;
+using GroupDocs.Editor.Cloud.Sdk.Model.Requests;
+
+namespace GroupDocs.Editor.Cloud.Examples.CSharp
+{
+	// Is Storage Exist
+	class Storage_Exist
+	{
+		public static void Run()
+		{
+			var configuration = new Configuration(Common.MyAppSid, Common.MyAppKey);
+			var apiInstance = new StorageApi(configuration);
+
+			try
+			{
+				var request = new StorageExistsRequest(Common.MyStorage);
+
+				var response = apiInstance.StorageExists(request);
+				Console.WriteLine("Expected response type is StorageExist: " + response.Exists.Value.ToString());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Exception while calling StorageApi: " + e.Message);
+			}
+		}
+	}
+}
+```
 
 {{< /tab >}} {{< tab "Java" >}}
 
-{{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Storage_Exist.java >}}
+```java
+package examples.Working_With_Storage;
+
+import com.groupdocs.cloud.Editor.api.*;
+import com.groupdocs.cloud.Editor.client.ApiException;
+import com.groupdocs.cloud.Editor.model.*;
+import com.groupdocs.cloud.Editor.model.requests.*;
+import examples.Utils;
+
+public class Annotation_Java_Storage_Exist {
+
+	public static void main(String[] args) {
+
+		StorageApi apiInstance = new StorageApi(Utils.AppSID, Utils.AppKey);
+		try {
+			StorageExistsRequest request = new StorageExistsRequest(Utils.MYStorage);
+			StorageExist response = apiInstance.storageExists(request);
+			System.out.println("Expected response type is StorageExist: " + response.getExists());
+		} catch (ApiException e) {
+			System.err.println("Exception while calling StorageApi:");
+			e.printStackTrace();
+		}
+	}
+}
+```
 
 {{< /tab >}} {{< tab "PHP" >}}
 
-{{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Storage_Exist.php >}}
+```php
+<?php
+
+include(dirname(__DIR__) . '\CommonUtils.php');
+
+try {
+    $apiInstance = CommonUtils::GetStorageApiInstance();
+
+	$request = new GroupDocs\Editor\Model\Requests\StorageExistsRequest(CommonUtils::$MyStorage);
+		$response = $apiInstance->storageExists($request);
+		
+		echo "Expected response type is StorageExist: ", $response;
+} catch (Exception $e) {
+    echo "Something went wrong: ", $e->getMessage(), "\n";
+}
+?>
+```
 
 {{< /tab >}} {{< tab "Ruby" >}}
 
-{{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Working_With_Spreadsheets.rb >}}
+```ruby
+# For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-ruby-samples
+require 'groupdocs_editor_cloud'
+ 
+$app_sid = "XXXX-XXXX-XXXX-XXXX" # Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+$app_key = "XXXXXXXXXXXXXXXX" # Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+# Create necessary API instances    
+fileApi = GroupDocsEditorCloud::FileApi.from_keys($app_sid, $app_key)
+editApi = GroupDocsEditorCloud::EditApi.from_keys($app_sid, $app_key)
+ 
+# The document already uploaded into the storage.
+# Load it into editable state
+fileInfo = GroupDocsEditorCloud::FileInfo.new
+fileInfo.file_path = 'Spreadsheet/four-sheets.xlsx'       
+ 
+loadOptions = GroupDocsEditorCloud::SpreadsheetLoadOptions.new
+loadOptions.file_info = fileInfo
+loadOptions.output_path = "output"
+loadOptions.worksheet_index = 0
+ 
+loadRequest = GroupDocsEditorCloud::LoadRequest.new(loadOptions)        
+loadResult = editApi.load(loadRequest)
+ 
+# Download html document
+htmlFile = fileApi.download_file(GroupDocsEditorCloud::DownloadFileRequest.new loadResult.html_path)
+htmlFile.open
+html = htmlFile.read
+htmlFile.close
+ 
+# Edit something...
+html = html.gsub("This is sample sheet", "This is sample sheep")
+ 
+# Upload html back to storage
+htmlFile = File.open(htmlFile.path, "w")        
+htmlFile.write(html)
+htmlFile.close
+uploadRequest = GroupDocsEditorCloud::UploadFileRequest.new loadResult.html_path, File.open(htmlFile.path, "r")
+fileApi.upload_file(uploadRequest)
+ 
+# Save html back to xlsx
+saveOptions = GroupDocsEditorCloud::SpreadsheetSaveOptions.new
+saveOptions.file_info = fileInfo
+saveOptions.output_path = "output/edited.xlsx"
+saveOptions.html_path = loadResult.html_path
+saveOptions.resources_path = loadResult.resources_path
+ 
+saveRequest = GroupDocsEditorCloud::SaveRequest.new(saveOptions)
+saveResult = editApi.save(saveRequest)        
+ 
+puts("Document edited: " + saveResult.path)
+```
 
 {{< /tab >}} {{< tab "Node.js" >}}
 
-{{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Storage_Exist.js >}}
+```js
+"use strict";
+class Editor_Node_Storage_Exist {
+	static Run() {
+		// retrieve supported file-formats
+		var request = new groupdocs_Editor_cloud_1.StorageExistsRequest(myStorage);
+		storageApi.storageExists(request)
+			.then(function (response) {
+				console.log("Expected response type is StorageExist: " + response.exists);
+			})
+			.catch(function (error) {
+				console.log("Error: " + error.message);
+			});
+	}
+}
+module.exports = Editor_Node_Storage_Exist;
+
+```
 
 {{< /tab >}} {{< tab "Python" >}}
 
-{{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Storage_Exist.py >}}
+```python
+# Import modules
+import groupdocs_Editor_cloud
+
+from Common_Utilities.Utils import Common_Utilities
+
+
+class Editor_Python_Storage_Exist:
+    
+    @classmethod
+    def Run(self):
+        # Create instance of the API
+        api = Common_Utilities.Get_StorageApi_Instance()
+        
+        try:
+            request = groupdocs_Editor_cloud.StorageExistsRequest(Common_Utilities.myStorage)
+            response = api.storage_exists(request)
+            
+            print("Expected response type is StorageExist: " + str(response))
+        except groupdocs_Editor_cloud.ApiException as e:
+            print("Exception while calling API: {0}".format(e.message))
+```
 
 {{< /tab >}} {{< /tabs >}}
 
@@ -113,27 +272,152 @@ Our API is completely independent of your operating system, database system or d
 
 {{< tabs "example4">}} {{< tab "C#" >}}
 
-{{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Object_Exists.cs >}}
+```csharp
+using System;
+using GroupDocs.Editor.Cloud.Sdk.Api;
+using GroupDocs.Editor.Cloud.Sdk.Client;
+using GroupDocs.Editor.Cloud.Sdk.Model.Requests;
+
+namespace GroupDocs.Editor.Cloud.Examples.CSharp
+{
+	// Is Object Exists
+	class Object_Exists
+	{
+		public static void Run()
+		{
+			var configuration = new Configuration(Common.MyAppSid, Common.MyAppKey);
+			var apiInstance = new StorageApi(configuration);
+
+			try
+			{
+				var request = new ObjectExistsRequest("WordProcessing/one-page.docx", Common.MyStorage);
+
+				var response = apiInstance.ObjectExists(request);
+				Console.WriteLine("Expected response type is ObjectExist: " + response.Exists.Value.ToString());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Exception while calling StorageApi: " + e.Message);
+			}
+		}
+	}
+}
+```
 
 {{< /tab >}} {{< tab "Java" >}}
 
-{{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Object_Exists.java >}}
+```java
+package examples.Working_With_Storage;
+
+import com.groupdocs.cloud.Editor.api.*;
+import com.groupdocs.cloud.Editor.client.ApiException;
+import com.groupdocs.cloud.Editor.model.*;
+import com.groupdocs.cloud.Editor.model.requests.*;
+import examples.Utils;
+
+public class Annotation_Java_Object_Exists {
+
+	public static void main(String[] args) {
+
+		StorageApi apiInstance = new StorageApi(Utils.AppSID, Utils.AppKey);
+		try {
+			ObjectExistsRequest request = new ObjectExistsRequest("Editors\\one-page.docx", Utils.MYStorage, null);
+			ObjectExist response = apiInstance.objectExists(request);
+			System.out.println("Expected response type is ObjectExist: " + response.getExists());
+		} catch (ApiException e) {
+			System.err.println("Exception while calling StorageApi:");
+			e.printStackTrace();
+		}
+	}
+}
+```
 
 {{< /tab >}} {{< tab "PHP" >}}
 
-{{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Object_Exists.php >}}
+```php
+<?php
+
+include(dirname(__DIR__) . '\CommonUtils.php');
+
+	try {
+		$apiInstance = CommonUtils::GetStorageApiInstance();
+
+		$request = new GroupDocs\Editor\Model\Requests\ObjectExistsRequest("Editordocs\one-page.docx", CommonUtils::$MyStorage);
+		$response = $apiInstance->objectExists($request);
+		
+		echo "Expected response type is ObjectExist: ", $response;
+	} catch (Exception $e) {
+		echo "Something went wrong: ", $e->getMessage(), "\n";
+	}
+?>
+```
 
 {{< /tab >}} {{< tab "Ruby" >}}
 
-{{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Object_Exists.rb >}}
+```ruby
+# Load the gem
+require 'groupdocs_signature_cloud'
+require 'common_utilities/Utils.rb'
+
+class Working_With_Storage
+  def self.Editor_Ruby_Object_Exists()
+
+    # Getting instance of the API
+    $api = Common_Utilities.Get_StorageApi_Instance()
+    
+    $request = GroupDocsEditorCloud::ObjectExistsRequest.new("Editordocs/one-page.docx", $myStorage)
+    $response = $api.object_exists($request)
+
+    puts("Expected response type is ObjectExist: " + ($response).to_s)
+  end
+end
+```
 
 {{< /tab >}} {{< tab "Node.js" >}}
 
-{{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Object_Exists.js >}}
+```js
+"use strict";
+class Editor_Node_Object_Exists {
+	static Run() {
+		// retrieve supported file-formats
+		var request = new groupdocs_Editor_cloud_1.ObjectExistsRequest("Editordocs/one-page.docx", myStorage);
+		storageApi.objectExists(request)
+			.then(function (response) {
+				console.log("Expected response type is ObjectExist: " + response.exists);
+			})
+			.catch(function (error) {
+				console.log("Error: " + error.message);
+			});
+	}
+}
+module.exports = Editor_Node_Object_Exists;
+
+```
 
 {{< /tab >}} {{< tab "Python" >}}
 
-{{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Object_Exists.py >}}
+```python
+# Import modules
+import groupdocs_Editor_cloud
+
+from Common_Utilities.Utils import Common_Utilities
+
+
+class Editor_Python_Object_Exists:
+    
+    @classmethod
+    def Run(self):
+        # Create instance of the API
+        api = Common_Utilities.Get_StorageApi_Instance()
+        
+        try:
+            request = groupdocs_Editor_cloud.ObjectExistsRequest("Editordocs\\one-page.docx", Common_Utilities.myStorage)
+            response = api.object_exists(request)
+            
+            print("Expected response type is ObjectExist: " + str(response))
+        except groupdocs_Editor_cloud.ApiException as e:
+            print("Exception while calling API: {0}".format(e.message))
+```
 
 {{< /tab >}} {{< /tabs >}}
 
@@ -176,27 +460,152 @@ Our API is completely independent of your operating system, database system or d
 
 {{< tabs "example6">}} {{< tab "C#" >}}
 
-{{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Get_Disc_Usage.cs >}}
+```csharp
+using System;
+using GroupDocs.Editor.Cloud.Sdk.Api;
+using GroupDocs.Editor.Cloud.Sdk.Client;
+using GroupDocs.Editor.Cloud.Sdk.Model.Requests;
+
+namespace GroupDocs.Editor.Cloud.Examples.CSharp
+{
+	// Get Get Disc Usage
+	class Get_Disc_Usage
+	{
+		public static void Run()
+		{
+			var configuration = new Configuration(Common.MyAppSid, Common.MyAppKey);
+			var apiInstance = new StorageApi(configuration);
+
+			try
+			{
+				var request = new GetDiscUsageRequest(Common.MyStorage);
+
+				var response = apiInstance.GetDiscUsage(request);
+				Console.WriteLine("Expected response type is DiscUsage: " + response.UsedSize.ToString());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Exception while calling StorageApi: " + e.Message);
+			}
+		}
+	}
+}
+```
 
 {{< /tab >}} {{< tab "Java" >}}
 
-{{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Get_Disc_Usage.java >}}
+```java
+package examples.Working_With_Storage;
+
+import com.groupdocs.cloud.Editor.api.*;
+import com.groupdocs.cloud.Editor.client.ApiException;
+import com.groupdocs.cloud.Editor.model.*;
+import com.groupdocs.cloud.Editor.model.requests.*;
+import examples.Utils;
+
+public class Editor_Java_Get_Disc_Usage {
+
+	public static void main(String[] args) {
+
+		StorageApi apiInstance = new StorageApi(Utils.AppSID, Utils.AppKey);
+		try {
+			GetDiscUsageRequest request = new GetDiscUsageRequest(Utils.MYStorage);
+			DiscUsage response = apiInstance.getDiscUsage(request);
+			System.out.println("Expected response type is DiscUsage: " + response.getUsedSize());
+		} catch (ApiException e) {
+			System.err.println("Exception while calling StorageApi:");
+			e.printStackTrace();
+		}
+	}
+}
+```
 
 {{< /tab >}} {{< tab "PHP" >}}
 
-{{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Get_Disc_Usage.php >}}
+```php
+<?php
+
+include(dirname(__DIR__) . '\CommonUtils.php');
+
+	try {
+		$apiInstance = CommonUtils::GetStorageApiInstance();
+
+		$request = new GroupDocs\Editor\Model\Requests\GetDiscUsageRequest(CommonUtils::$MyStorage);
+		$response = $apiInstance->getDiscUsage($request);
+			
+		echo "Expected response type is DiscUsage: ", $response;
+	} catch (Exception $e) {
+		echo "Something went wrong: ", $e->getMessage(), "\n";
+	}
+?>
+```
 
 {{< /tab >}} {{< tab "Ruby" >}}
 
-{{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Get_Disc_Usage.rb >}}
+```ruby
+# Load the gem
+require 'groupdocs_signature_cloud'
+require 'common_utilities/Utils.rb'
+
+class Working_With_Storage
+  def self.Editor_Ruby_Get_Disc_Usage()
+
+    # Getting instance of the API
+    $api = Common_Utilities.Get_StorageApi_Instance()
+    
+    $request = GroupDocsEditorCloud::GetDiscUsageRequest.new($myStorage)
+    $response = $api.get_disc_usage($request)
+
+    puts("Expected response type is DiscUsage: " + ($response).to_s)
+  end
+end
+```
 
 {{< /tab >}} {{< tab "Node.js" >}}
 
-{{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Get_Disc_Usage.js >}}
+```js
+"use strict";
+class Editor_Node_Get_Disc_Usage {
+	static Run() {
+		// retrieve supported file-formats
+		var request = new groupdocs_Editor_cloud_1.GetDiscUsageRequest(myStorage);
+		storageApi.getDiscUsage(request)
+			.then(function (response) {
+				console.log("Expected response type is DiscUsage: " + response.usedSize);
+			})
+			.catch(function (error) {
+				console.log("Error: " + error.message);
+			});
+	}
+}
+module.exports = Editor_Node_Get_Disc_Usage;
+
+```
 
 {{< /tab >}} {{< tab "Python" >}}
 
-{{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Get_Disc_Usage.py >}}
+```python
+# Import modules
+import groupdocs_Editor_cloud
+
+from Common_Utilities.Utils import Common_Utilities
+
+
+class Editor_Python_Get_Disc_Usage:
+    
+    @classmethod
+    def Run(self):
+        # Create instance of the API
+        api = Common_Utilities.Get_StorageApi_Instance()
+        
+        try:
+            request = groupdocs_Editor_cloud.GetDiscUsageRequest(Common_Utilities.myStorage)
+            response = api.get_disc_usage(request)
+            
+            print("Expected response type is DiscUsage: " + str(response))
+        except groupdocs_Editor_cloud.ApiException as e:
+            print("Exception while calling API: {0}".format(e.message))
+```
 
 {{< /tab >}} {{< /tabs >}}
 
@@ -249,26 +658,151 @@ Our API is completely independent of your operating system, database system or d
 
 {{< tabs "example8">}} {{< tab "C#" >}}
 
-{{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Get_File_Versions.cs >}}
+```csharp
+using System;
+using GroupDocs.Editor.Cloud.Sdk.Api;
+using GroupDocs.Editor.Cloud.Sdk.Client;
+using GroupDocs.Editor.Cloud.Sdk.Model.Requests;
+
+namespace GroupDocs.Editor.Cloud.Examples.CSharp
+{
+	// Get File Versions
+	class Get_File_Versions
+	{
+		public static void Run()
+		{
+			var configuration = new Configuration(Common.MyAppSid, Common.MyAppKey);
+			var apiInstance = new StorageApi(configuration);
+
+			try
+			{
+				var request = new GetFileVersionsRequest("one-page.docx", Common.MyStorage);
+
+				var response = apiInstance.GetFileVersions(request);
+				Console.WriteLine("Expected response type is FileVersions: " + response.Value.Count.ToString());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Exception while calling StorageApi: " + e.Message);
+			}
+		}
+	}
+}
+```
 
 {{< /tab >}} {{< tab "Java" >}}
 
-{{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Get_File_Versions.java >}}
+```java
+package examples.Working_With_Storage;
+
+import com.groupdocs.cloud.Editor.api.*;
+import com.groupdocs.cloud.Editor.client.ApiException;
+import com.groupdocs.cloud.Editor.model.*;
+import com.groupdocs.cloud.Editor.model.requests.*;
+import examples.Utils;
+
+public class Editor_Java_Get_File_Versions {
+
+	public static void main(String[] args) {
+
+		StorageApi apiInstance = new StorageApi(Utils.AppSID, Utils.AppKey);
+		try {
+			GetFileVersionsRequest request = new GetFileVersionsRequest("Editors\\one-page.docx", Utils.MYStorage);
+			FileVersions response = apiInstance.getFileVersions(request);
+			System.out.println("Expected response type is FileVersions: " + response.getValue().size());
+		} catch (ApiException e) {
+			System.err.println("Exception while calling StorageApi:");
+			e.printStackTrace();
+		}
+	}
+}
+```
 
 {{< /tab >}} {{< tab "PHP" >}}
 
-{{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Get_File_Versions.php >}}
+```php
+<?php
+
+include(dirname(__DIR__) . '\CommonUtils.php');
+
+	try {
+		$apiInstance = CommonUtils::GetStorageApiInstance();
+
+		$request = new GroupDocs\Editor\Model\Requests\GetFileVersionsRequest("Editordocs\one-page.docx", CommonUtils::$MyStorage);
+		$response = $apiInstance->getFileVersions($request);
+		
+		echo "Expected response type is FileVersions: ", $response;
+	} catch (Exception $e) {
+		echo "Something went wrong: ", $e->getMessage(), "\n";
+	}
+?>
+```
 
 {{< /tab >}} {{< tab "Ruby" >}}
 
-{{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Get_File_Versions.rb >}}
+```ruby
+# Load the gem
+require 'groupdocs_signature_cloud'
+require 'common_utilities/Utils.rb'
+
+class Working_With_Storage
+  def self.Editor_Ruby_Get_File_Versions()
+
+    # Getting instance of the API
+    $api = Common_Utilities.Get_StorageApi_Instance()
+    
+    $request = GroupDocsEditorCloud::GetFileVersionsRequest.new("Editordocs/one-page.docx", $myStorage)
+    $response = $api.get_file_versions($request)
+
+    puts("Expected response type is FileVersions: " + ($response).to_s)
+  end
+end
+```
 
 {{< /tab >}} {{< tab "Node.js" >}}
 
-{{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Get_File_Versions.js >}}
+```js
+"use strict";
+class Editor_Node_Get_File_Versions {
+	static Run() {
+		// retrieve supported file-formats
+		var request = new groupdocs_Editor_cloud_1.GetFileVersionsRequest("Editordocs/one-page.docx", myStorage);
+		storageApi.getFileVersions(request)
+			.then(function (response) {
+				console.log("Expected response type is FileVersions: " + response.value.length);
+			})
+			.catch(function (error) {
+				console.log("Error: " + error.message);
+			});
+	}
+}
+module.exports = Editor_Node_Get_File_Versions;
+
+```
 
 {{< /tab >}} {{< tab "Python" >}}
 
-{{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Get_File_Versions.py >}}
+```python
+# Import modules
+import groupdocs_Editor_cloud
+
+from Common_Utilities.Utils import Common_Utilities
+
+
+class Editor_Python_Get_File_Versions:
+    
+    @classmethod
+    def Run(self):
+        # Create instance of the API
+        api = Common_Utilities.Get_StorageApi_Instance()
+        
+        try:
+            request = groupdocs_Editor_cloud.GetFileVersionsRequest("Editordocs\\one-page.docx", Common_Utilities.myStorage)
+            response = api.get_file_versions(request)
+            
+            print("Expected response type is FileVersions: " + str(response))
+        except groupdocs_Editor_cloud.ApiException as e:
+            print("Exception while calling API: {0}".format(e.message))
+```
 
 {{< /tab >}} {{< /tabs >}}

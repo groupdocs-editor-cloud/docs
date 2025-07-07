@@ -91,26 +91,293 @@ Using an SDK (API client) is the quickest way for a developer to speed up the de
 
 {{< tabs "example2">}} {{< tab "C#" >}}
 
-{{< gist groupdocscloud 34f0df87ff6e7aaffef5876bdcb04a38 Editor_CSharp_Working_With_Text.cs >}}
+```csharp
+// For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-dotnet-samples
+string MyAppKey = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+string MyAppSid = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+var configuration = new Configuration(MyAppSid, MyAppKey);
+ 
+// Create necessary API instances
+var editApi = new EditApi(configuration );
+var fileApi = new FileApi(configuration );
+ 
+// The document already uploaded into the storage.
+// Load it into editable state
+var loadOptions = new TextLoadOptions
+{
+    FileInfo = new FileInfo
+    {
+        FilePath = "Text/document.txt"
+    },
+    OutputPath = "output"
+};
+var loadResult = editApi.Load(new LoadRequest(loadOptions));
+ 
+// Download html document
+var stream = fileApi.DownloadFile(new DownloadFileRequest(loadResult.HtmlPath));
+var htmlString = new StreamReader(stream, Encoding.UTF8).ReadToEnd();
+ 
+// Edit something...
+htmlString = htmlString.Replace("Page Text", "New Text");
+ 
+// Upload html back to storage
+fileApi.UploadFile(new UploadFileRequest(loadResult.HtmlPath,
+    new MemoryStream(Encoding.UTF8.GetBytes(htmlString))));
+ 
+// Save html back to txt
+var saveOptions = new TextSaveOptions
+{
+    FileInfo = loadOptions.FileInfo,
+    OutputPath = "output/edited.txt",
+    HtmlPath = loadResult.HtmlPath,
+    ResourcesPath = loadResult.ResourcesPath
+};
+var saveResult = editApi.Save(new SaveRequest(saveOptions));
+```
 
 {{< /tab >}} {{< tab "Java" >}}
 
-{{< gist groupdocscloud cb5b0d1ae842f50f90382640823a2004 Editor_Java_Working_With_Text.java >}}
+```java
+// For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-java-samples
+String MyAppKey = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+String MyAppSid = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+Configuration configuration = new Configuration(MyAppSid, MyAppKey);
+ 
+ 
+// Create necessary API instances
+EditApi editApi = new EditApi(configuration);
+FileApi fileApi = new FileApi(configuration);
+ 
+// The document already uploaded into the storage.
+// Load it into editable state
+FileInfo fileInfo = new FileInfo();
+fileInfo.setFilePath("Text/document.txt");
+TextLoadOptions loadOptions = new TextLoadOptions();
+loadOptions.setFileInfo(fileInfo);
+loadOptions.setOutputPath("output");
+LoadResult loadResult = editApi.load(new LoadRequest(loadOptions));
+ 
+// Download html document
+File file = fileApi.downloadFile(new DownloadFileRequest(loadResult.getHtmlPath(), null, null));
+             
+// Edit something...
+List<String> lines = Files.readAllLines(file.toPath());
+List<String> newLines = new ArrayList<String>();
+for (String line : lines) {
+    newLines.add(line.replaceAll("Page Text", "New Text"));
+}
+Files.write(file.toPath(), newLines);
+ 
+// Upload html back to storage
+fileApi.uploadFile(new UploadFileRequest(loadResult.getHtmlPath(), file, Common.MYStorage));
+ 
+// Save html back to txt
+TextSaveOptions saveOptions = new TextSaveOptions();
+saveOptions.setFileInfo(fileInfo);
+saveOptions.setOutputPath("output/edited.txt"); 
+saveOptions.setHtmlPath(loadResult.getHtmlPath());      
+saveOptions.setResourcesPath(loadResult.getResourcesPath());
+DocumentResult saveResult = editApi.save(new SaveRequest(saveOptions));
+ 
+System.out.println("Document edited: " + saveResult.getPath());
+```
 
 {{< /tab >}} {{< tab "PHP" >}}
 
-{{< gist groupdocscloud 288fe44b5603cd7966fa72f293e91b88 Editor_Php_Working_With_Text.php >}}
+```php
+// For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-php-samples
+use GroupDocs\Editor\Model;
+use GroupDocs\Editor\Model\Requests;
+ 
+ 
+$AppSid = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+$AppKey = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+$configuration = new GroupDocs\Editor\Configuration();
+$configuration->setAppSid($AppSid);
+$configuration->setAppKey($AppKey);
+ 
+$editApi = new GroupDocs\Editor\EditApi($configuration);
+$fileApi = new GroupDocs\Editor\FileApi($configuration);
+ 
+// The document already uploaded into the storage
+// Load it into editable state
+$fileInfo = new Model\FileInfo();
+$fileInfo->setFilePath("Text/document.txt");        
+$loadOptions = new Model\TextLoadOptions();
+$loadOptions->setFileInfo($fileInfo);
+$loadOptions->setOutputPath("output");
+$loadResult = $editApi->load(new Requests\loadRequest($loadOptions));
+ 
+// Download html document
+$htmlFile = $fileApi->downloadFile(new Requests\downloadFileRequest($loadResult->getHtmlPath()));
+$html = file_get_contents($htmlFile->getRealPath());
+ 
+// Edit something...
+$html = str_replace("Page Text", "New Text", $html);
+ 
+// Upload html back to storage
+file_put_contents($htmlFile->getRealPath(), $html);
+$uploadRequest = new Requests\uploadFileRequest($loadResult->getHtmlPath(), $htmlFile->getRealPath());
+$fileApi->uploadFile($uploadRequest);
+ 
+// Save html back to txt
+$saveOptions = new Model\TextSaveOptions();
+$saveOptions->setFileInfo($fileInfo);
+$saveOptions->setOutputPath("output/edited.txt");
+$saveOptions->setHtmlPath($loadResult->getHtmlPath());
+$saveOptions->setResourcesPath($loadResult->getResourcesPath());
+$saveResult = $editApi->save(new Requests\saveRequest($saveOptions));
+ 
+// Done.
+echo "Document edited: " . $saveResult->getPath();
+```
 
 {{< /tab >}} {{< tab "Ruby" >}}
 
-{{< gist groupdocscloud ba011159eee59cd5a1f696ae6fadb2e4 Editor_Ruby_Working_With_Text.rb >}}
+```ruby
+# For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-ruby-samples
+require 'groupdocs_editor_cloud'
+ 
+$app_sid = "XXXX-XXXX-XXXX-XXXX" # Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+$app_key = "XXXXXXXXXXXXXXXX" # Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+# Create necessary API instances    
+fileApi = GroupDocsEditorCloud::FileApi.from_keys($app_sid, $app_key)
+editApi = GroupDocsEditorCloud::EditApi.from_keys($app_sid, $app_key)
+ 
+# The document already uploaded into the storage.
+# Load it into editable state
+fileInfo = GroupDocsEditorCloud::FileInfo.new
+fileInfo.file_path = 'Text/document.txt'       
+ 
+loadOptions = GroupDocsEditorCloud::TextLoadOptions.new
+loadOptions.file_info = fileInfo
+loadOptions.output_path = "output"
+ 
+loadRequest = GroupDocsEditorCloud::LoadRequest.new(loadOptions)        
+loadResult = editApi.load(loadRequest)
+ 
+# Download html document
+htmlFile = fileApi.download_file(GroupDocsEditorCloud::DownloadFileRequest.new loadResult.html_path)
+htmlFile.open
+html = htmlFile.read
+htmlFile.close
+ 
+# Edit something...
+html = html.gsub("Page Text", "New Text")
+ 
+# Upload html back to storage
+htmlFile = File.open(htmlFile.path, "w")        
+htmlFile.write(html)
+htmlFile.close
+uploadRequest = GroupDocsEditorCloud::UploadFileRequest.new loadResult.html_path, File.open(htmlFile.path, "r")
+fileApi.upload_file(uploadRequest)
+ 
+# Save html back to txt
+saveOptions = GroupDocsEditorCloud::TextSaveOptions.new
+saveOptions.file_info = fileInfo
+saveOptions.output_path = "output/edited.txt"
+saveOptions.html_path = loadResult.html_path
+saveOptions.resources_path = loadResult.resources_path
+ 
+saveRequest = GroupDocsEditorCloud::SaveRequest.new(saveOptions)
+saveResult = editApi.save(saveRequest)        
+ 
+puts("Document edited: " + saveResult.path)
+```
 
 {{< /tab >}} {{< tab "Node.js" >}}
 
-{{< gist groupdocscloud d42190d60101442ccba939ac4db41454 Editor_Node_Working_With_Text.js >}}
+```js
+// For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-node-samples
+global.editor_cloud = require("groupdocs-editor-cloud");
+ 
+global.appSid = "XXXX-XXXX-XXXX-XXXX"; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+global.appKey = "XXXXXXXXXXXXXXXX"; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+global.editApi = editor_cloud.EditApi.fromKeys(appSid, appKey);
+global.fileApi = editor_cloud.FileApi.fromKeys(appSid, appKey);
+ 
+ 
+// The document already uploaded into the storage.
+// Load it into editable state      
+let fileInfo = new editor_cloud.FileInfo();
+fileInfo.filePath = "Text/document.txt";        
+let loadOptions = new editor_cloud.TextLoadOptions();
+loadOptions.fileInfo = fileInfo;
+loadOptions.outputPath = "output";
+let loadResult = await editApi.load(new editor_cloud.LoadRequest(loadOptions));
+ 
+// Download html document
+let buf = await fileApi.downloadFile(new editor_cloud.DownloadFileRequest(loadResult.htmlPath));
+let htmlString = buf.toString("utf-8");
+ 
+// Edit something...
+htmlString = htmlString.replace("Page Text", "New Text");
+ 
+// Upload html back to storage
+await fileApi.uploadFile(new editor_cloud.UploadFileRequest(loadResult.htmlPath, new Buffer(htmlString, "utf-8")));
+ 
+// Save html back to docx
+let saveOptions = new editor_cloud.TextSaveOptions();
+saveOptions.fileInfo = fileInfo;
+saveOptions.outputPath = "output/edited.txt";
+saveOptions.htmlPath = loadResult.htmlPath;
+saveOptions.resourcesPath = loadResult.resourcesPath;
+let saveResult = await editApi.save(new editor_cloud.SaveRequest(saveOptions));
+ 
+// Done.
+console.log("Document edited: " + saveResult.path);
+```
 
 {{< /tab >}} {{< tab "Python" >}}
 
-{{< gist groupdocscloud 49c298f42348259cd85175f315d57272 Editor_Python_Working_With_Text.py >}}
+```python
+# For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-python-samples
+import groupdocs_editor_cloud
+ 
+app_sid = "XXXX-XXXX-XXXX-XXXX" # Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+app_key = "XXXXXXXXXXXXXXXX" # Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+editApi = groupdocs_editor_cloud.EditApi.from_keys(app_sid, app_key)
+fileApi = groupdocs_editor_cloud.FileApi.from_keys(app_sid, app_key)
+ 
+# The document already uploaded into the storage.
+# Load it into editable state
+fileInfo = groupdocs_editor_cloud.FileInfo("Text/document.txt")
+loadOptions = groupdocs_editor_cloud.TextLoadOptions()
+loadOptions.file_info = fileInfo
+loadOptions.output_path = "output"       
+loadResult = editApi.load(groupdocs_editor_cloud.LoadRequest(loadOptions))        
+ 
+# Download html document
+htmlFile = fileApi.download_file(groupdocs_editor_cloud.DownloadFileRequest(loadResult.html_path))
+html = ""       
+with open(htmlFile, 'r') as file:
+    html = file.read()
+ 
+# Edit something...    
+html = html.replace("Page Text", "New Text")
+ 
+# Upload html back to storage
+with open(htmlFile, 'w') as file:
+    file.write(html)
+ 
+fileApi.upload_file(groupdocs_editor_cloud.UploadFileRequest(loadResult.html_path, htmlFile))
+ 
+# Save html back to txt
+saveOptions = groupdocs_editor_cloud.TextSaveOptions()
+saveOptions.file_info = fileInfo
+saveOptions.output_path = "output/edited.txt"
+saveOptions.html_path = loadResult.html_path
+saveOptions.resources_path = loadResult.resources_path
+saveResult = editApi.save(groupdocs_editor_cloud.SaveRequest(saveOptions))
+ 
+# Done
+print("Document edited: " + saveResult.path)
+```
 
 {{< /tab >}} {{< /tabs >}}

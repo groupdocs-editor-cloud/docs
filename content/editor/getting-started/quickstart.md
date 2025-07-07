@@ -25,7 +25,7 @@ Using an SDK (API client) is the quickest way for a developer to speed up the de
 
 ## Make an API request from the SDK of your choice
 
-Use the **Client Id** and **Client Secret** from the API app client you created in step one and replace in the corresponding code. Below is an example demonstrating how to get a list of all supported file formats in GroupDocs.Editor Cloud.
+Use the **Client Id** and **Client Secret** from the API app client you created in step one and replace in the corresponding code. Below is an example demonstrating how to edit docx document using GroupDocs.Editor Cloud.
 
 {{< alert style="info" >}}
 The GitHub repository for [GroupDocs.Editor Cloud](https://github.com/groupdocs-editor-cloud) has a complete set of examples, demonstrating our API capabilities.
@@ -36,12 +36,49 @@ For complete examples and data files, please go to [https://github.com/groupdocs
 {{< tabs "example1">}} {{< tab "C#" >}}
 
 ```csharp
-string MyClientSecret = ""; // Get ClientId and ClientSecret from https://dashboard.groupdocs.cloud
-string MyClientId = ""; // Get ClientId and ClientSecret from ttps://dashboard.groupdocs.cloud
-var configuration = new Configuration(MyClientId, MyClientSecret);
-var apiInstance = new InfoApi(configuration);
-var response = apiInstance.GetSupportedFileFormats();
-
+// For complete examples and data files, please go to https://github.com/groupdocs-editor-cloud/groupdocs-editor-cloud-dotnet-samples
+string MyAppKey = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+string MyAppSid = ""; // Get AppKey and AppSID from https://dashboard.groupdocs.cloud
+  
+var configuration = new Configuration(MyAppSid, MyAppKey);
+ 
+// Create necessary API instances
+var editApi = new EditApi(configuration );
+var fileApi = new FileApi(configuration );
+ 
+// The document already uploaded into the storage.
+// Load it into editable state
+var loadOptions = new WordProcessingLoadOptions
+{
+    FileInfo = new FileInfo
+    {
+        FilePath = "WordProcessing/password-protected.docx",
+        Password = "password"
+    },
+    OutputPath = "output"
+};
+var loadResult = editApi.Load(new LoadRequest(loadOptions));
+ 
+// Download html document
+var stream = fileApi.DownloadFile(new DownloadFileRequest(loadResult.HtmlPath));
+var htmlString = new StreamReader(stream, Encoding.UTF8).ReadToEnd();
+ 
+// Edit something...
+htmlString = htmlString.Replace("Sample test text", "Hello world");
+ 
+// Upload html back to storage
+fileApi.UploadFile(new UploadFileRequest(loadResult.HtmlPath,
+    new MemoryStream(Encoding.UTF8.GetBytes(htmlString))));
+ 
+// Save html back to docx
+var saveOptions = new WordProcessingSaveOptions
+{
+    FileInfo = loadOptions.FileInfo,
+    OutputPath = "output/edited.docx",
+    HtmlPath = loadResult.HtmlPath,
+    ResourcesPath = loadResult.ResourcesPath
+};
+var saveResult = editApi.Save(new SaveRequest(saveOptions));
 ```
 
 {{< /tab >}} {{< /tabs >}}
